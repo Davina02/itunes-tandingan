@@ -50,6 +50,7 @@ Session ${new Date()}
  */
  import "./config/Database";
  import { handleError } from './config/Exception';
+ import "./config/NoSQLConfig";
 
 
 /*

@@ -39,7 +39,15 @@ export default {
       database  : process.env.DB_DATABASE ?? '',
       username  : process.env.DB_USERNAME ?? 'root',
       password  : process.env.DB_PASSWORD ?? ''
-    }
+    },
+
+    // mongod: {
+    //   host       : process.env.MONGO_HOSTNAME ?? "127.0.0.1",
+    //   port       : process.env.MONGO_PORT ?? "27017",
+    //   database   : process.env.MONGO_DB ?? 'test',
+    //   username   : process.env.MONGO_USERNAME ?? '',
+    //   password   : process.env.MONGO_PASSWORD ?? ''
+    // }
 
   }
   
