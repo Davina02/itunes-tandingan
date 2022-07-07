@@ -1,12 +1,25 @@
+// Make sure to put any pre-condition to make sure your application is running well in here
+import dotenv from 'dotenv';
+dotenv.config();
+
+import config from '../main/config/Config';
+import { Log } from "../main/config/Logging";
+import NoSQLConfig from '../main/config/NoSQLConfig';
+
+
 /**
  * WRITING TEST
  *
  * You can specify every unit Tests in here.
  */
+async function main() {
+    NoSQLConfig;
 
-import "../main/config/NoSQLConfig";
-setTimeout(function(){}, 2000);
-import "./example/Index";
-import "./example/mqttSubscriberTesting";
+    await require("./example/Index");
+    const mqttSubscriberTesting = require("./example/mqttSubscriberTesting");
+    await mqttSubscriberTesting;
+}
 
-process.exit(0);
+main().then(() => {
+    process.exit(0);
+})
