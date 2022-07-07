@@ -8,16 +8,17 @@ export class ActivityLogRepositoryImpl implements ActivityLogRepository {
         feature_key: string, 
         user_id: string, 
         description: string, 
-        action: string): Promise<any> => {
-          const activityLog = new ActivityLog({
-                "id": id,
-                "feature_key": feature_key,
-                "user_id": user_id,
-                "description": description,
-                "action": action
-            });
-          
-          activityLog.save();
-        ;}
+        action: string
+    ): Promise<any> => {
+      const activityLog = new ActivityLog({
+        "id": id,
+        "feature_key": feature_key,
+        "user_id": user_id,
+        "description": description,
+        "action": action
+      });
+      
+      activityLog.save();
+    }
 
 }

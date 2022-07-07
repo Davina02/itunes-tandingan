@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import NoSQLConfig from '../../config/NoSQLConfig';
 
 // Schema Config
 const schema = new mongoose.Schema({
@@ -15,4 +16,4 @@ const schema = new mongoose.Schema({
  * Within this statement, there's model implementation for MongoDB database
  * for activity log support.
  */
-export const ActivityLog =  mongoose.model('col_mlm_user_experiences', schema);
+export const ActivityLog = NoSQLConfig.getMongooseInstance().model('col_mlm_user_experiences', schema);
