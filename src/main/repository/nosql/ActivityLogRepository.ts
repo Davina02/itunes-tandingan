@@ -15,7 +15,7 @@ export interface ActivityLogRepository {
     createActivityLog(
         id: string,
         feature_key: string,
-        user_id: bigint,
+        user_id: string,
         description: string,
         action: string
     ): Promise<any>;

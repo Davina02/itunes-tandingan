@@ -1,11 +1,13 @@
 import { ErrorHandler } from '../../config/Exception';
+import { ValidationError } from 'express-validator';
 
 export class MQTTValidationException extends ErrorHandler {
 
-  constructor(){
+  constructor(errorMessage: Array<ValidationError>) {
     super(
-        "ERR01",
-        "Please try to input again."
+        "ERR0001",
+        `Bad Request - ${(errorMessage[0].msg)}`,
+        errorMessage
     );
   }
 

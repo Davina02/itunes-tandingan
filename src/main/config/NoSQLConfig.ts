@@ -22,15 +22,15 @@ class MongoDBConnection {
      * this class is singleton.
      */
     private constructor(){
-        // const mongodb = config.database.mongod;
-        // const connectionString: string = `mongodb://${mongodb.username}${mongodb.username === '' && mongodb.password === '' ? '' : ':'}${mongodb.password}${mongodb.username === '' && mongodb.password === '' ? '' : '@'}${mongodb.host}:${mongodb.port}/${mongodb.database}`;
-        // mongoose.connect(connectionString).then(e => {
-        //     Log.d("MONGOD_CONNECTION", `Connection to mongodb server has been established.`);
-        // });
+        const mongodb = config.database.mongod;
+        const connectionString: string = `mongodb://${mongodb.username}${mongodb.username === '' && mongodb.password === '' ? '' : ':'}${mongodb.password}${mongodb.username === '' && mongodb.password === '' ? '' : '@'}${mongodb.host}:${mongodb.port}/${mongodb.database}`;
+        console.log(connectionString);
 
-        Log.d("MONGOD_CONNECTION", `Connection to mongodb server has been established.`);
-
-        mongoose.connect('mongodb://127.0.0.1:27017');
+        mongoose.connect(connectionString).then(e => {
+            Log.d("MONGOD_CONNECTION", `Connection to mongodb server has been established.` + connectionString);
+            console.log("Connection to mongodb server has been established." + connectionString);
+        });
+        
     }
 
     public static getInstance(): MongoDBConnection {

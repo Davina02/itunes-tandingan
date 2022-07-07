@@ -1,3 +1,4 @@
+import { ValidationError } from "express-validator";
 import { MQTTValidationException } from "../common/exception/MQTTValidationException";
 import { ActivityLogRepositoryImpl } from "../repository/nosql/impl/ActivityLogRepositoryImpl";
 
@@ -34,21 +35,49 @@ export class MQTTSubscriberHandler {
         /**
          * Validation
          */
+        const errors: Array<ValidationError> = [];
+
         if (message.feature_key == null) {
-            throw new MQTTValidationException();
-        } else if (message.feature_key.length() > 40) {
-            throw new MQTTValidationException();
+            errors.push({
+                msg: "Parameter 'feature_key' tidak ditemukan",
+                param: "feature_key",
+                location: "params",
+                value: undefined
+            });
+        } else if (message.feature_key.length > 40) {
+            errors.push({
+                msg: "Parameter 'feature_key' harus diisi maksimal 40 karakter.",
+                param: "feature_key",
+                location: "params",
+                value: undefined
+            });
         }
 
         if (message.user_id == null) {
-            throw new MQTTValidationException();
+            errors.push({
+                msg: "Parameter 'user_id' tidak ditemukan",
+                param: "user_id",
+                location: "params",
+                value: undefined
+            });
         }
 
         if (message.action == null) {
-            throw new MQTTValidationException();
+            errors.push({
+                msg: "Parameter 'action' tidak ditemukan",
+                param: "action",
+                location: "params",
+                value: undefined
+            });
         }
 
-        new ActivityLogRepositoryImpl().createActivityLog(id, JSON.stringify(message.feature_key), message.user_id.toString(), JSON.stringify(message.description), JSON.stringify(message.action));
+        if (errors.length !== 0) {
+            throw new MQTTValidationException(
+                errors
+            );
+        }
+
+        new ActivityLogRepositoryImpl().createActivityLog(id, message.feature_key, message.user_id, message.description, message.action);
 
     }
 }
