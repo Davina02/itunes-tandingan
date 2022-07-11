@@ -12,12 +12,12 @@ export class MQTTSubscriberHandler {
         let id = "";
 
         const currentDate = new Date();
-        let month = "";
-        let date = "";
-        let hours = "";
-        let minutes = "";
-        let seconds = "";
-        let milliseconds = "";
+        let month = ""+(currentDate.getMonth() + 1);
+        let date = ""+currentDate.getDate();
+        let hours = ""+currentDate.getHours();
+        let minutes = ""+currentDate.getMinutes();
+        let seconds = ""+currentDate.getSeconds();
+        let milliseconds = ""+currentDate.getMilliseconds();
 
         if((currentDate.getMonth() + 1) < 10) { month = "0"+(currentDate.getMonth() + 1) };
         if(currentDate.getDate() < 10) { date = "0"+currentDate.getDate() };
